@@ -1,6 +1,7 @@
 package com.plbear.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.plbear.myapplication.databinding.ActivityMainBinding
@@ -28,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun text(base: Int, point: Float): String {
+    private fun text(base: Int, tmp: Float): String {
         val cnt = 5
+        val point = 100 - tmp
+        Log.e("yanlog","point $point")
         val scale = if (point >= 95) 60f
         else if (point >= 90) 40f
         else if (point >= 80) 15f
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         else -100f
 
         if (scale > 0) {
-            val echoCnt = (base * scale / 4 / cnt).toInt()
+            val echoCnt = (base * scale / (20 * 5) / cnt).toInt()
             return "每天需要定投: $echoCnt"
         }
         val echoCnt = (base * scale / 20).toInt()
